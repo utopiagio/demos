@@ -13,7 +13,7 @@ require (
 	github.com/kr/text v0.2.0 // indirect
 	github.com/phin1x/go-ipp v1.6.1 // indirect
 	github.com/rogpeppe/go-internal v1.9.0 // indirect
-	github.com/utopiagio/gio v0.0.0-20231102073553-19b74251b52c // indirect
+	github.com/utopiagio/gio v0.0.0-20231212100655-1c8c043a8b0b // indirect
 	golang.design/x/clipboard v0.7.0 // indirect
 	golang.org/x/exp v0.0.0-20230307190834-24139beb5833 // indirect
 	golang.org/x/exp/shiny v0.0.0-20231006140011-7918f672742d // indirect

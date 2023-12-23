@@ -1,11 +1,8 @@
-module github.com/utopiagio/demos/GoNotepad
+module github.com/utopiagio/demos/GoHello
 
 go 1.21.4
 
-require (
-	github.com/utopiagio/utopia v0.0.0-20231208094327-685cb35bb2a8
-	github.com/utopiagio/utopia-x v0.0.0-20231208134818-6d823f58451b
-)
+require github.com/utopiagio/utopia v0.0.0-20231208094327-685cb35bb2a8
 
 require (
 	gioui.org/cpu v0.0.0-20220412190645-f1e9e8c3b1f7 // indirect
@@ -26,8 +23,6 @@ require (
 	golang.org/x/text v0.13.0 // indirect
 )
 
-replace (
-	github.com/utopiagio/gio => ../../gio
-	github.com/utopiagio/utopia => ../../utopia
-	github.com/utopiagio/utopia-x => ../../utopia-x
-)
+replace github.com/utopiagio/utopia => ../../utopia
+
+replace github.com/utopiagio/gio => ../../gio

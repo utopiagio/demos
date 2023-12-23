@@ -54,7 +54,7 @@ func main() {
 	layoutTop.SetBorder(ui.BorderSingleLine, 2, 10, ui.Color_Blue)
 
 	lblWindowProperties = ui.GoLabel(layoutTop, "")
-	lblWindowProperties.SetSizePolicy(ui.ExpandingWidth, ui.ExpandingHeight)
+	lblWindowProperties.SetSizePolicy(ui.FixedWidth, ui.FixedHeight)
 	lblWindowProperties.SetBorder(ui.BorderSingleLine, 2, 6, ui.Color_Blue)
 	lblWindowProperties.SetMaxLines(100)
 	lblWindowProperties.SetPadding(8,8,8,8)
