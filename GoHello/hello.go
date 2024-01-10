@@ -1,6 +1,6 @@
 /* hello.go */
 
-package main
+package hello
 
 import (
 	"log"
