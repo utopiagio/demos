@@ -1,4 +1,6 @@
-/* GoModal/modal.go */
+// SPDX-License-Identifier: Unlicense OR MIT
+
+/* github.com/utopiagio/demos/GoModal/modal.go */
 
 package main
 
@@ -8,13 +10,10 @@ import (
 	ui "github.com/utopiagio/utopia"
 
 	dialog "github.com/utopiagio/utopia-x/filedialog"
-	//icon "golang.org/x/exp/shiny/materialdesign/icons"	// eg: icon.FileFolder
-	
 )
 
 var win *ui.GoWindowObj
 var modal *ui.GoWindowObj
-
 
 func main() {
 	// create application instance before any other objects
@@ -29,9 +28,6 @@ func main() {
 	//win.SetPadding(10,10,10,10)
 	win.SetPadding(0,0,0,0)
 
-	//modal = ui.GoWindow("ModalDialog")
-	//ui.GoApp.AddWindow(modal)
-
 	layoutTop := ui.GoHFlexBoxLayout(win.Layout())
 	layoutTop.SetMargin(0,0,0,0)
 	layoutTop.SetBorder(ui.BorderSingleLine, 1, 5, ui.Color_Red)
@@ -39,7 +35,6 @@ func main() {
 
 	layoutBottom := ui.GoHFlexBoxLayout(win.Layout())
 	layoutBottom.SetSizePolicy(ui.ExpandingWidth, ui.PreferredHeight)
-	//layoutTop.SetMargin(10,10,10,10)
 	layoutBottom.SetMargin(0,0,0,0)
 	layoutBottom.SetBorder(ui.BorderSingleLine, 1, 5, ui.Color_Red)
 	layoutBottom.SetPadding(0,0,0,0)
@@ -48,7 +43,7 @@ func main() {
 	btnSwitch.SetMargin(0,0,0,0)
 	btnSwitch.SetBorder(ui.BorderSingleLine, 1, 5, ui.Color_Red)
 	btnSwitch.SetPadding(6,6,6,6)
-	btnSwitch.SetSizePolicy(ui.FixedWidth, ui.FixedHeight)
+	btnSwitch.SetSizePolicy(ui.PreferredWidth, ui.PreferredHeight)
 	btnSwitch.SetOnClick(ActionShowModal_Clicked)
 
 	btnClose := ui.GoButton(layoutBottom, "Close")
@@ -56,12 +51,10 @@ func main() {
 	btnClose.SetHeight(160)
 	btnClose.SetMargin(10,10,10,10)
 	btnClose.SetBorder(ui.BorderSingleLine, 1, 5, ui.Color_Red)
-	//btnClose.SetPadding(1,1,1,1)
 	btnClose.SetPadding(4,4,4,4)
 	btnClose.SetOnClick(ActionExit_Clicked)
 	btnClose.SetSizePolicy(ui.FixedWidth, ui.FixedHeight)
 
-	
 	// show the application window
 	win.Show()
 	// run the application
@@ -72,31 +65,22 @@ func ActionExit_Clicked() {
 	log.Println("ActionExit_Clicked().......")
 	//win.Close()
 	os.Exit(0)
-	
 }
 
 func ActionShowModal_Clicked() {
 	log.Println("ActionShowModal_Clicked().......")
-
-	//filePath := dialog.GetOpenFileName(modal.Layout(), "c:/godev", "Open File Dialog")
 	modal = ui.GoModalWindow("GoFileDialog", "Open")
 	modal.SetSize(600, 400)
 	/*openFile :=*/ dialog.GoOpenFile(modal.Layout(), "/", "Open File Dialog", "")
-	//openFile.SetAction(ActionOpenFile)
 	btnClose := ui.GoButton(modal.Layout(), "Close")
 	btnClose.SetMargin(10,10,10,10)
 	btnClose.SetBorder(ui.BorderSingleLine, 1, 5, ui.Color_Red)
-	//btnClose.SetPadding(1,1,1,1)
 	btnClose.SetPadding(4,4,4,4)
 	btnClose.SetOnClick(ActionModalClose_Clicked)
-	btnClose.SetSizePolicy(ui.FixedWidth, ui.FixedHeight)
+	btnClose.SetSizePolicy(ui.PreferredWidth, ui.PreferredHeight)
 
 	modal.Show()
 	return
-}
-
-func ActionOpenFile(response int) {
-	modal.Close()
 }
 
 func ActionModalClose_Clicked() {
@@ -104,4 +88,5 @@ func ActionModalClose_Clicked() {
 	info := modal.ModalInfo
 	log.Println("ModalAction:", action)
 	log.Println("ModalInfo:", info)
+	modal.Close()
 }

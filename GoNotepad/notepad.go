@@ -29,9 +29,6 @@ func main() {
 	// set the window layout style to stack widgets vertically
 	win.SetLayoutStyle(ui.VFlexBoxLayout)
 	win.SetMargin(10,10,10,10)
-	//win.SetMargin(15,15,15,15)
-	//win.SetBorder(ui.BorderSingleLine, 2, 10, ui.Color_Blue)
-	//win.SetPadding(10,10,10,10)
 	win.SetPadding(0,0,0,0)
 
 	// setup menubar
@@ -43,7 +40,6 @@ func main() {
 	mnuFont := menuBar.AddMenu("Font")
 	mnuSettings := menuBar.AddMenu("Settings")
 	mnuHelp := menuBar.AddMenu("Help")
-	//mnuFile.SetOnClick(ActionFile_Clicked)
 	
 	// add GoMenuItems to the menu dropdowns
 	// GoMenuItems can be added with corresponding actions 
@@ -89,79 +85,64 @@ func main() {
 	layoutEdit.SetPadding(10,10,10,10)
 	layoutEdit.SetBorder(ui.BorderSingleLine, 2, 10, ui.Color_Blue)
 
-	txtPad = ui.GoTextEdit(layoutEdit, "Enter text here.")
-	//txtPad.SetBorder(ui.BorderSingleLine, 1, 0, ui.Color_Blue)
-	txtPad.SetSizePolicy(ui.ExpandingWidth, ui.ExpandingHeight)
-	txtPad.SetFont("Go", ui.Regular, ui.Bold)
+		txtPad = ui.GoTextEdit(layoutEdit, "Enter text here.")
+		txtPad.SetSizePolicy(ui.ExpandingWidth, ui.ExpandingHeight)
+		txtPad.SetFont("Go", ui.Regular, ui.Bold)
 	
 	ui.GoSpacer(win.Layout(), 10)
 
 	// MainWindow has one action layout 
 	layoutAction := ui.GoHFlexBoxLayout(win.Layout())
-	layoutAction.SetSizePolicy(ui.ExpandingWidth, ui.FixedHeight)
+	layoutAction.SetSizePolicy(ui.ExpandingWidth, ui.PreferredHeight)
 	layoutAction.SetMargin(0,0,0,0)
 	layoutAction.SetPadding(2,2,2,2)
 	layoutAction.SetBorder(ui.BorderSingleLine, 2,10, ui.Color_Blue)
-	layoutAction.SetHeight(200)
 
-	// add actions  to actionLayout
-	layoutMail := ui.GoHFlexBoxLayout(layoutAction)
-	layoutMail.SetSizePolicy(ui.ExpandingWidth, ui.FixedHeight)
-	layoutMail.SetMargin(0,0,0,0)
-	layoutMail.SetPadding(4,4,4,4)
-	layoutMail.SetBorder(ui.BorderSingleLine, 1, 6, ui.Color_Blue)
+		// add actions  to actionLayout
+		layoutMail := ui.GoHFlexBoxLayout(layoutAction)
+		layoutMail.SetSizePolicy(ui.ExpandingWidth, ui.PreferredHeight)
+		layoutMail.SetMargin(0,0,0,0)
+		layoutMail.SetPadding(4,4,4,4)
+		layoutMail.SetBorder(ui.BorderSingleLine, 1, 6, ui.Color_Blue)
 
-	layoutMailAddress := ui.GoVFlexBoxLayout(layoutMail)
-	layoutMailAddress.SetSizePolicy(ui.ExpandingWidth, ui.ExpandingHeight)
-	layoutMailAddress.SetMargin(0,0,0,0)
-	layoutMailAddress.SetPadding(0,0,0,0)
-	//layoutMailAddress.SetBorder(ui.BorderSingleLine, 1, 0, ui.Color_Blue)
+		layoutMailAddress := ui.GoVFlexBoxLayout(layoutMail)
+		layoutMailAddress.SetSizePolicy(ui.ExpandingWidth, ui.PreferredHeight)
+		layoutMailAddress.SetMargin(0,0,0,0)
+		layoutMailAddress.SetPadding(0,0,0,0)
 
-	lblMailAddress := ui.GoLabel(layoutMailAddress, "Mail Address")
-	lblMailAddress.SetMargin(0,0,0,0)
-	lblMailAddress.SetPadding(0,0,0,0)
+		lblMailAddress := ui.GoLabel(layoutMailAddress, "Mail Address")
+		lblMailAddress.SetMargin(0,0,0,0)
+		lblMailAddress.SetPadding(0,0,0,0)
 
-	txtMailAddress := ui.GoTextEdit(layoutMailAddress, "richard.devel2go@gmail.com")
-	txtMailAddress.SetSizePolicy(ui.ExpandingWidth, ui.FixedHeight)
-	txtMailAddress.SetHeight(24)
-	txtMailAddress.SetSingleLine(true)
-	txtMailAddress.SetMargin(10,0,0,0)
-	txtMailAddress.SetBorder(ui.BorderSingleLine, 1, 0, ui.Color_Blue)
-	txtMailAddress.SetPadding(5,2,0,2)
+		txtMailAddress := ui.GoTextEdit(layoutMailAddress, "richard.devel2go@gmail.com")
+		txtMailAddress.SetSizePolicy(ui.ExpandingWidth, ui.PreferredHeight)
+		txtMailAddress.SetHeight(24)
+		txtMailAddress.SetSingleLine(true)
+		txtMailAddress.SetMargin(10,0,0,0)
+		txtMailAddress.SetBorder(ui.BorderSingleLine, 1, 0, ui.Color_Blue)
+		txtMailAddress.SetPadding(5,2,0,2)
 
-	btnSend := ui.GoButton(layoutMail, "Send")
-	//btnClose.SetWidth(260)
-	//btnClose.SetHeight(160)
-	btnSend.SetMargin(20,0,0,0)
-	//btnClose.SetBorder(ui.BorderSingleLine, 1, 2, ui.Color_Red)
-	//btnSend.SetPadding(4,4,4,4)
-	btnSend.SetOnClick(ActionSendMail_Clicked)
+		btnSend := ui.GoButton(layoutMail, "Send")
+		btnSend.SetMargin(20,0,0,0)
+		btnSend.SetOnClick(ActionSendMail_Clicked)
 
 	ui.GoSpacer(layoutAction, 10)
 
 	layoutPost := ui.GoVFlexBoxLayout(layoutAction)
-	layoutPost.SetMargin(0,0,0,0)
-	layoutPost.SetPadding(4,4,4,4)
-	//layoutPost.SetBorder(ui.BorderSingleLine, 1, 6, ui.Color_Blue)
-	layoutPost.SetSizePolicy(ui.FixedWidth, ui.FixedHeight)
+	layoutPost.SetSizePolicy(ui.PreferredWidth, ui.PreferredHeight)
 
-	//iconFileFolder := ui.GoIcon(icon.FileFolder)
-	//ui.GoSpacer(layoutAction, 10)
 	/*lblPost := */ui.GoLabel(layoutPost, "Publish")
 
 	layoutPostTo := ui.GoHFlexBoxLayout(layoutPost)
-	layoutPostTo.SetSizePolicy(ui.ExpandingWidth, ui.FixedHeight)
+	layoutPostTo.SetSizePolicy(ui.PreferredWidth, ui.PreferredHeight)
 
 	ui.GoSpacer(layoutPostTo, 10)
-	/*btnPost := ui.GoIconButton(layoutPost, iconFileFolder)*/
+
 	facebookIcon := ui.GoIconPNG("../../icons/facebook-icon-48x48.png")
 
 	facebook := ui.GoIconPNGButton(layoutPostTo, facebookIcon)
 	facebook.SetHeight(24)
 	facebook.SetWidth(24)
-	//imagebox.SetMargin(5,0,0,0)
-	//imagebox.SetBorder(ui.BorderSingleLine, 1, 5, ui.Color_Blue)
-	//imagebox.SetPadding(4,4,4,4)
 	facebook.SetSizePolicy(ui.FixedWidth, ui.FixedHeight)
 
 	ui.GoSpacer(layoutPostTo, 10)
@@ -181,27 +162,14 @@ func main() {
 	signal.SetWidth(24)
 	signal.SetSizePolicy(ui.FixedWidth, ui.FixedHeight)
 
-	
-
-	//ui.GoButton(layoutPost, "WhatsApp")
-	//ui.GoButton(layoutPost, "Signal")
-
 	expander := ui.GoSpacer(layoutAction, 20)
 	expander.SetSizePolicy(ui.FixedWidth, ui.FixedHeight)
 
-	//expander := ui.GoLabel(layoutAction, "expander")
-	//expander.SetSizePolicy(ui.ExpandingWidth, ui.FixedHeight)
-
 	btnClose := ui.GoButton(layoutAction, "Close")
-	//btnClose.SetWidth(260)
-	//btnClose.SetHeight(160)
-	//btnClose.SetMargin(20,0,0,0)
 	btnClose.SetBorder(ui.BorderSingleLine, 1, 6, ui.Color_Blue)
 	btnClose.SetPadding(4,4,4,4)
 	btnClose.SetOnClick(ActionExit_Clicked)
-	//btnClose.SetSizePolicy(ui.FixedWidth, ui.FixedHeight)
 
-	//fileName = "UtopiaGio Unamed"
 	openFilePath = ""
 	filePath = "UtopiaGio Unamed"
 	fileSaved = true

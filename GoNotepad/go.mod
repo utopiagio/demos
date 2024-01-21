@@ -4,7 +4,7 @@ go 1.21.4
 
 require (
 	github.com/utopiagio/utopia v0.0.4
-	github.com/utopiagio/utopia-x v0.0.4
+	github.com/utopiagio/utopia-x v0.0.6
 )
 
 require (
@@ -25,5 +25,3 @@ require (
 	golang.org/x/sys v0.15.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
 )
-
-replace github.com/utopiagio/utopia-x => ../../utopia-x

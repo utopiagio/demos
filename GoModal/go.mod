@@ -4,7 +4,7 @@ go 1.21.4
 
 require (
 	github.com/utopiagio/utopia v0.0.4
-	github.com/utopiagio/utopia-x v0.0.4
+	github.com/utopiagio/utopia-x v0.0.6
 )
 
 require (

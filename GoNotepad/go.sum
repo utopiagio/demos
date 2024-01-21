@@ -25,8 +25,10 @@ github.com/rogpeppe/go-internal v1.9.0 h1:73kH8U+JUqXU8lRuOHeVHaa/SZPifC7BkcraZV
 github.com/rogpeppe/go-internal v1.9.0/go.mod h1:WtVeX8xhTBvf0smdhujwtBcq4Qrzq/fJaraNFVN+nFs=
 github.com/utopiagio/gio v0.0.1 h1:2B7dy9pGK0XmWiazf7tkSJGpft2W4fr1OAO3wSYa1UM=
 github.com/utopiagio/gio v0.0.1/go.mod h1:kiXYEMeeTU7rrLjgfG3QFsr6fv2+kQ4XgPWQBdZQ9qY=
-github.com/utopiagio/utopia v0.0.3 h1:ktNB5sq0+4kt6rGueWYGUcEvjyp2p/+mtN3gbeOjjMA=
-github.com/utopiagio/utopia v0.0.3/go.mod h1:jkKJnj+7clDxTh+8qH9uChy4QqIp1Bng0J7eiaKgLoQ=
+github.com/utopiagio/utopia v0.0.4 h1:ShSqjGF54ux2OobIndAFCUGe2aG4AkpD0sWMVoqSxek=
+github.com/utopiagio/utopia v0.0.4/go.mod h1:jkKJnj+7clDxTh+8qH9uChy4QqIp1Bng0J7eiaKgLoQ=
+github.com/utopiagio/utopia-x v0.0.6 h1:DzT4ktuyU50v1SxkIrSdXL08uhakv+wmv71CtkjGq20=
+github.com/utopiagio/utopia-x v0.0.6/go.mod h1:Yc6Xq1RrhtW5MazNVRaXgJ6EDzekaySA3DOl98PKt2w=
 golang.design/x/clipboard v0.7.0 h1:4Je8M/ys9AJumVnl8m+rZnIvstSnYj1fvzqYrU3TXvo=
 golang.design/x/clipboard v0.7.0/go.mod h1:PQIvqYO9GP29yINEfsEn5zSQKAz3UgXmZKzDA6dnq2E=
 golang.org/x/exp v0.0.0-20231226003508-02704c960a9b h1:kLiC65FbiHWFAOu+lxwNPujcsl8VYyTYYEZnsOO1WK4=

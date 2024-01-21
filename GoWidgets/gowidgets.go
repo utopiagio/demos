@@ -1,4 +1,6 @@
-/* GoWidgets/widgets.go */
+// SPDX-License-Identifier: Unlicense OR MIT
+
+/* github.com/utopiagio/demos/GoWidgets/gowidgets.go */
 
 package main
 
