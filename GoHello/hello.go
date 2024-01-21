@@ -2,7 +2,7 @@
 
 /* github.com/utopiagio/demos/GoHello/hello.go */
 
-package main
+package hello
 
 import (
     "log"
@@ -156,3 +156,4 @@ func GetWindowProperties() (text string) {
 func UpdateWindowProperties() {
     lblWindowProperties.SetText(GetWindowProperties())
 }
+
