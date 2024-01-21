@@ -38,7 +38,7 @@ func main() {
 	layoutTop.SetPadding(0,0,0,0)
 
 	layoutBottom := ui.GoHFlexBoxLayout(win.Layout())
-	layoutBottom.SetSizePolicy(ui.ExpandingWidth, ui.FixedHeight)
+	layoutBottom.SetSizePolicy(ui.ExpandingWidth, ui.PreferredHeight)
 	//layoutTop.SetMargin(10,10,10,10)
 	layoutBottom.SetMargin(0,0,0,0)
 	layoutBottom.SetBorder(ui.BorderSingleLine, 1, 5, ui.Color_Red)

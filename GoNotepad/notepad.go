@@ -1,4 +1,6 @@
-/* notepad.go */
+// SPDX-License-Identifier: Unlicense OR MIT
+
+/* github.com/utopiagio/demos/GoNotepad/notepad.go */
 
 package main
 
@@ -21,9 +23,9 @@ var fileSaved bool
 
 func main() {
 	// create application instance before any other objects
-	app = ui.GoApplication("Notepad")
+	app = ui.GoApplication("GoNotepad")
 	// create application window
-	win = ui.GoWindow("Notepad")
+	win = ui.GoWindow("GoNotepad - UtopiaGio Package")
 	// set the window layout style to stack widgets vertically
 	win.SetLayoutStyle(ui.VFlexBoxLayout)
 	win.SetMargin(10,10,10,10)
@@ -90,6 +92,7 @@ func main() {
 	txtPad = ui.GoTextEdit(layoutEdit, "Enter text here.")
 	//txtPad.SetBorder(ui.BorderSingleLine, 1, 0, ui.Color_Blue)
 	txtPad.SetSizePolicy(ui.ExpandingWidth, ui.ExpandingHeight)
+	txtPad.SetFont("Go", ui.Regular, ui.Bold)
 	
 	ui.GoSpacer(win.Layout(), 10)
 
@@ -120,9 +123,11 @@ func main() {
 
 	txtMailAddress := ui.GoTextEdit(layoutMailAddress, "richard.devel2go@gmail.com")
 	txtMailAddress.SetSizePolicy(ui.ExpandingWidth, ui.FixedHeight)
+	txtMailAddress.SetHeight(24)
+	txtMailAddress.SetSingleLine(true)
 	txtMailAddress.SetMargin(10,0,0,0)
 	txtMailAddress.SetBorder(ui.BorderSingleLine, 1, 0, ui.Color_Blue)
-	txtMailAddress.SetPadding(0,0,0,0)
+	txtMailAddress.SetPadding(5,2,0,2)
 
 	btnSend := ui.GoButton(layoutMail, "Send")
 	//btnClose.SetWidth(260)
@@ -331,7 +336,11 @@ func ActionFileClose_Clicked() {
 
 func ActionFontBold_Clicked() {
 	log.Println("ActionFontBold_Clicked().......")
-	txtPad.SetFontBold(true)
+	if txtPad.FontBold() == true {
+		txtPad.SetFontBold(false)
+	} else {
+		txtPad.SetFontBold(true)
+	}
 }
 
 func ActionRedFontColor_Clicked() {
