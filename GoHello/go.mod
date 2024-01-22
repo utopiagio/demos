@@ -1,4 +1,4 @@
-module github.com/utopiagio/demos/hello
+module github.com/utopiagio/demos/GoHello
 
 go 1.21.4
 
