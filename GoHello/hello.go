@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: Unlicense OR MIT
 
-/* github.com/utopiagio/demos/GoHello/hello.go */
+/* github.com/utopiagio/demos/gohello/hello.go */
 
-package hello
+package main
 
 import (
     "log"

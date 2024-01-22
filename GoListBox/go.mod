@@ -1,4 +1,4 @@
-module github.com/utopiagio/demos/GoHello
+module github.com/utopiagio/demos/GoListBox
 
 go 1.21.4
 

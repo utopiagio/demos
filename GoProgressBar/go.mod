@@ -1,4 +1,4 @@
-module github.com/utopiagio/demos/GoHello
+module github.com/utopiagio/demos/GoProgressBar
 
 go 1.21.4
 
