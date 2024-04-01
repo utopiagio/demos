@@ -13,16 +13,20 @@ import (
 
     "github.com/utopiagio/utopia/desktop"
     "github.com/utopiagio/utopia/metrics"
+    "golang.org/x/exp/shiny/materialdesign/icons"   // eg: icons.FileFolder
 )
 
 var mainwin *ui.GoWindowObj
 var lblWindowProperties *ui.GoLabelObj
+var lstView0 *ui.GoListViewObj
+var lstView1 *ui.GoListViewObj
+var lstView2 *ui.GoListViewObj
 
 func main() {
     // create application instance before any other objects
     app := ui.GoApplication("GoListViewDemo")
     // create application window
-    mainwin = ui.GoMainWindow("GoKistView Demo - UtopiaGio Package")
+    mainwin = ui.GoMainWindow("GoListView Demo - UtopiaGio Package")
     // set the window layout style to stack widgets vertically
     mainwin.SetLayoutStyle(ui.VFlexBoxLayout)
     mainwin.SetMargin(10,10,10,10)
@@ -48,38 +52,46 @@ func main() {
 
     layoutLstSizing := ui.GoVFlexBoxLayout(layoutWinProperties)
 
-    lstView0 := ui.GoListView(layoutLstSizing)
+    lstViewLayout0 := ui.GoHFlexBoxLayout(layoutLstSizing)
+
+    lstView0 = ui.GoListView(lstViewLayout0)
+    lstView0.SetLayoutMode(ui.Horizontal)
     lstView0.SetSizePolicy(ui.FixedWidth, ui.FixedHeight)
     lstView0.SetBorder(ui.BorderSingleLine, 2, 6, ui.Color_LightBlue)
     lstView0.SetWidth(300)
     lstView0.SetHeight(100)
-
-    lstView0.AddListItem(nil, "Item1")
-    lstView0.AddListItem(nil, "Item2")
-    lstView0.AddListItem(nil, "Item3")
    
+    lstView0.AddListItem(icons.FileFolder, "Item1")
+    lstView0.AddListItem(icons.FileFolder, "Item2")
+    lstView0.AddListItem(icons.FileFolder, "Item3")
+
     ui.GoSpacer(layoutLstSizing, 10)
 
-    lstView1 := ui.GoListView(layoutLstSizing)
+    lstViewLayout1 := ui.GoHFlexBoxLayout(layoutLstSizing)
+
+    lstView1 = ui.GoListView(lstViewLayout1)
+    lstView1.SetLayoutMode(ui.Horizontal)
     lstView1.SetSizePolicy(ui.PreferredWidth, ui.PreferredHeight)
     lstView1.SetBorder(ui.BorderSingleLine, 2, 6, ui.Color_LightBlue)
     //lstView1.SetWidth(300)
     //lstView1.SetHeight(100)
 
-    lstView1.AddListItem(nil, "Item1")
-    lstView1.AddListItem(nil, "Item2")
-    lstView1.AddListItem(nil, "Item3")
+    lstView1.AddListItem(icons.FileFolder, "Item1")
+    lstView1.AddListItem(icons.FileFolder, "Item2")
+    lstView1.AddListItem(icons.FileFolder, "Item3")
 
     ui.GoSpacer(layoutLstSizing, 10)
  
-    lstView2 := ui.GoListView(layoutLstSizing)
+    lstViewLayout2 := ui.GoHFlexBoxLayout(layoutLstSizing)
+
+    lstView2 = ui.GoListView(lstViewLayout2)
     lstView2.SetLayoutMode(ui.Vertical)
     lstView2.SetSizePolicy(ui.ExpandingWidth, ui.ExpandingHeight)
     lstView2.SetBorder(ui.BorderSingleLine, 2, 6, ui.Color_LightBlue)
 
-    lstView2.AddListItem(nil, "Item1")
-    lstView2.AddListItem(nil, "Item2")
-    lstView2.AddListItem(nil, "Item3")
+    lstView2.AddListItem(icons.FileFolder, "Item1")
+    lstView2.AddListItem(icons.FileFolder, "Item2")
+    lstView2.AddListItem(icons.FileFolder, "Item3")
     
     // Action Bar to contain button controls
     layoutBottom := ui.GoHFlexBoxLayout(mainwin.Layout())
@@ -116,7 +128,6 @@ func main() {
     mainwin.SetOnConfig(UpdateWindowProperties)
     mainwin.Show()
 
-    
     // run the application
     app.Run()
 }
@@ -153,14 +164,21 @@ func GetWindowProperties() (text string) {
     text += "    ClientWidth:        " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, desktop.ClientWidth())) + " px\n"  // * ui.GoDpr)) + "\n"
     text += "    ClientHeight:         " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, desktop.ClientHeight())) + " px\n\n"    // * ui.GoDpr)) + "\n"
     
-    X, Y := mainwin.Pos()
-    Width, Height := mainwin.ClientSize()
+    wX, wY := mainwin.Pos()
+    wWidth, wHeight := mainwin.Size()
     text += "Window Geometry :" + "\n"
-    text += "    WindowPos:     " + " (" + strconv.Itoa(X) + ", " + strconv.Itoa(Y) + ")" + " px\n"
-    text += "    WindowSize:    " + " (" + strconv.Itoa(Width) + ", " + strconv.Itoa(Height) + ")" + " px\n\n"
-
+    text += "    WindowPos:     " + " (" + strconv.Itoa(wX) + ", " + strconv.Itoa(wY) + ")" + " dp\n"
+    text += "    WindowSize:    " + " (" + strconv.Itoa(wWidth) + ", " + strconv.Itoa(wHeight) + ")" + " dp\n\n"
+    
+    cX, cY := mainwin.ClientPos()
+    cWidth, cHeight := mainwin.ClientSize()
     text += "Window Client Geometry :" + "\n"
-    text += "    ClientSize: " + " (" + strconv.Itoa(metrics.DpToPx(ui.GoDpr, desktop.HorizontalSize())) + ", " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, desktop.VerticalSize())) + ")" + "\n"
+    text += "    ClientPos:     " + " (" + strconv.Itoa(cX) + ", " + strconv.Itoa(cY) + ")" + " dp\n"
+    text += "    ClientSize:    " + " (" + strconv.Itoa(cWidth) + ", " + strconv.Itoa(cHeight) + ")" + " dp\n\n"
+
+    text += "Window Geometry Screen Pixels:" + "\n"
+    text += "    WindowPos:     " + " (" + strconv.Itoa(metrics.DpToPx(ui.GoDpr, wX)) + ", " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, wY)) + ")" + " px\n"
+    text += "    WindowSize:    " + " (" + strconv.Itoa(metrics.DpToPx(ui.GoDpr, wWidth)) + ", " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, wHeight)) + ")" + " px\n"
 
     return text
 }

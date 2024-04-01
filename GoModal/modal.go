@@ -79,7 +79,7 @@ func ActionShowModal_Clicked() {
 	btnClose.SetOnClick(ActionModalClose_Clicked)
 	btnClose.SetSizePolicy(ui.PreferredWidth, ui.PreferredHeight)
 
-	modal.Show()
+	modal.ShowModal()
 	return
 }
 

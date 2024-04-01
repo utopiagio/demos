@@ -2,7 +2,7 @@ module github.com/utopiagio/demos/GoListBox
 
 go 1.21.4
 
-require github.com/utopiagio/utopia v0.0.4
+require github.com/utopiagio/utopia v0.0.5
 
 require (
 	gioui.org/cpu v0.0.0-20220412190645-f1e9e8c3b1f7 // indirect
@@ -13,7 +13,7 @@ require (
 	github.com/kr/text v0.2.0 // indirect
 	github.com/phin1x/go-ipp v1.6.1 // indirect
 	github.com/rogpeppe/go-internal v1.9.0 // indirect
-	github.com/utopiagio/gio v0.0.1 // indirect
+	github.com/utopiagio/gio v0.0.2 // indirect
 	golang.design/x/clipboard v0.7.0 // indirect
 	golang.org/x/exp v0.0.0-20231226003508-02704c960a9b // indirect
 	golang.org/x/exp/shiny v0.0.0-20231226003508-02704c960a9b // indirect

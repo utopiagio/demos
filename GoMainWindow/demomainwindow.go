@@ -24,13 +24,10 @@ func main() {
 	mainwin = ui.GoMainWindow("GoMainWindow Demo - UtopiaGio Package")
 	// set the window layout style to stack widgets vertically
 	mainwin.SetLayoutStyle(ui.VFlexBoxLayout)
-	mainwin.SetMargin(10,10,10,10)
-	//win.SetMargin(15,15,15,15)
-	//win.SetBorder(ui.BorderSingleLine, 2, 10, ui.Color_Blue)
-	//win.SetPadding(10,10,10,10)
-	mainwin.SetPadding(0,0,0,0)
-
-
+	mainwin.SetPadding(10,10,10,10)
+	mainwin.SetPos(0,0)
+	mainwin.SetSize(800, 600)
+	
 	menuBar := mainwin.MenuBar()
 	menuBar.Show()
 
@@ -118,10 +115,11 @@ func ActionHelp_Clicked() {
 func GetWindowProperties() (text string) {
 	text = "WINDOW PROPERTIES>\n\n"
     text += "Screen Geometry :" + "\n"
-    text += "    ScreenWidth:       " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, desktop.Width())) + " px\n"    // * ui.GoDpr)) + "\n"
-    text += "    ScreenHeight:      " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, desktop.Height())) + " px\n"    // * ui.GoDpr)) + "\n\n"
+    text += "    ScreenWidth:       " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, desktop.Width())) + " screen pixels\n"    // * ui.GoDpr)) + "\n"
+    text += "    ScreenHeight:      " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, desktop.Height())) + " screen pixels\n"    // * ui.GoDpr)) + "\n\n"
     text += "    HorizontalRes:       " + strconv.Itoa(desktop.HorizontalRes()) + " dpi\n"
-    text += "    VerticalRes:           " + strconv.Itoa(desktop.VerticalRes()) + " dpi\n\n"
+    text += "    VerticalRes:           " + strconv.Itoa(desktop.VerticalRes()) + " dpi\n"
+    text += "    TaskBarHeight:      " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, desktop.TaskBarHeight())) + " screen pixels\n\n"
 
     /*text += "Aspect Ratios :" + "\n"
     text += "   X: " + strconv.Itoa(desktop.AspectX())
@@ -132,14 +130,22 @@ func GetWindowProperties() (text string) {
     text += "    ClientWidth:        " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, desktop.ClientWidth())) + " px\n"  // * ui.GoDpr)) + "\n"
     text += "    ClientHeight:         " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, desktop.ClientHeight())) + " px\n\n"    // * ui.GoDpr)) + "\n"
     
-    X, Y := mainwin.Pos()
-    Width, Height := mainwin.ClientSize()
-    text += "Window Geometry :" + "\n"
-    text += "    WindowPos:     " + " (" + strconv.Itoa(X) + ", " + strconv.Itoa(Y) + ")" + " px\n"
-    text += "    WindowSize:    " + " (" + strconv.Itoa(Width) + ", " + strconv.Itoa(Height) + ")" + " px\n\n"
 
-    //text += "Window Client Geometry :" + "\n"
-    //text += "    ClientSize: " + " (" + strconv.Itoa(metrics.DpToPx(ui.GoDpr, desktop.HorizontalSize())) + ", " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, desktop.VerticalSize())) + ")" + "\n"
+    wX, wY := mainwin.Pos()
+    wWidth, wHeight := mainwin.Size()
+    text += "Window Geometry :" + "\n"
+    text += "    WindowPos:     " + " (" + strconv.Itoa(wX) + ", " + strconv.Itoa(wY) + ")" + " dp\n"
+	text += "    WindowSize:    " + " (" + strconv.Itoa(wWidth) + ", " + strconv.Itoa(wHeight) + ")" + " dp\n\n"
+    
+    cX, cY := mainwin.ClientPos()
+    cWidth, cHeight := mainwin.ClientSize()
+    text += "Window Client Geometry :" + "\n"
+    text += "    ClientPos:     " + " (" + strconv.Itoa(cX) + ", " + strconv.Itoa(cY) + ")" + " dp\n"
+    text += "    ClientSize:    " + " (" + strconv.Itoa(cWidth) + ", " + strconv.Itoa(cHeight) + ")" + " dp\n\n"
+
+    text += "Window Geometry Screen Px:" + "\n"
+	text += "    WindowPos:     " + " (" + strconv.Itoa(metrics.DpToPx(ui.GoDpr, wX)) + ", " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, wY)) + ")" + " px\n"
+    text += "    WindowSize:    " + " (" + strconv.Itoa(metrics.DpToPx(ui.GoDpr, wWidth)) + ", " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, wHeight)) + ")" + " px\n\n"
 
     return text
 }

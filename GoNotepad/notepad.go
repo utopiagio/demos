@@ -11,7 +11,7 @@ import (
 	"strings"
 	ui "github.com/utopiagio/utopia"
 	dialog "github.com/utopiagio/utopia-x/filedialog"
-	//icon "golang.org/x/exp/shiny/materialdesign/icons"	// eg: icon.FileFolder
+	//"golang.org/x/exp/shiny/materialdesign/icons"	// eg: icons.FileFolder
 )
 
 var app *ui.GoApplicationObj
@@ -30,6 +30,7 @@ func main() {
 	win.SetLayoutStyle(ui.VFlexBoxLayout)
 	win.SetMargin(10,10,10,10)
 	win.SetPadding(0,0,0,0)
+	win.Centre()
 
 	// setup menubar
 	menuBar := win.MenuBar()
@@ -80,13 +81,14 @@ func main() {
 	//win.Layout().SetSpacing(10)
 
 	// MainWindow has one edit layout
-	layoutEdit := ui.GoHFlexBoxLayout(win.Layout())
+	layoutEdit := ui.GoVBoxLayout(win.Layout())
 	layoutEdit.SetMargin(0,0,0,0)
 	layoutEdit.SetPadding(10,10,10,10)
 	layoutEdit.SetBorder(ui.BorderSingleLine, 2, 10, ui.Color_Blue)
 
 		txtPad = ui.GoTextEdit(layoutEdit, "Enter text here.")
-		txtPad.SetSizePolicy(ui.ExpandingWidth, ui.ExpandingHeight)
+		txtPad.SetSizePolicy(ui.ExpandingWidth, ui.PreferredHeight)
+		txtPad.SetMinHeight(200)
 		txtPad.SetFont("Go", ui.Regular, ui.Bold)
 	
 	ui.GoSpacer(win.Layout(), 10)

@@ -36,65 +36,65 @@ func main() {
     layoutWinProperties.SetPadding(10,10,10,10)
     layoutWinProperties.SetBorder(ui.BorderSingleLine, 2, 10, ui.Color_Blue)
 
-    lblWindowProperties = ui.GoLabel(layoutWinProperties, "")
-    lblWindowProperties.SetWrap(false)
-    lblWindowProperties.SetSizePolicy(ui.PreferredWidth, ui.ExpandingHeight)
-    lblWindowProperties.SetMinWidth(260)
-    lblWindowProperties.SetBorder(ui.BorderSingleLine, 2, 6, ui.Color_LightGray)
-    lblWindowProperties.SetMaxLines(19)
-    lblWindowProperties.SetPadding(8,8,8,8)
+        lblWindowProperties = ui.GoLabel(layoutWinProperties, "")
+        lblWindowProperties.SetWrap(false)
+        lblWindowProperties.SetSizePolicy(ui.PreferredWidth, ui.ExpandingHeight)
+        lblWindowProperties.SetMinWidth(260)
+        lblWindowProperties.SetBorder(ui.BorderSingleLine, 2, 6, ui.Color_LightGray)
+        lblWindowProperties.SetMaxLines(19)
+        lblWindowProperties.SetPadding(8,8,8,8)
 
-    ui.GoSpacer(layoutWinProperties, 10)
+        ui.GoSpacer(layoutWinProperties, 10)
 
-    layoutLblSizing := ui.GoVFlexBoxLayout(layoutWinProperties)
+        layoutLblSizing := ui.GoVFlexBoxLayout(layoutWinProperties)
 
-    chkBox0 := ui.GoCheckBox(layoutLblSizing, "Fixed")
-    chkBox0.SetSizePolicy(ui.FixedWidth, ui.FixedHeight)
-    chkBox0.SetBorder(ui.BorderSingleLine, 2, 6, ui.Color_LightBlue)
-    chkBox0.SetWidth(500)
-    chkBox0.SetHeight(50)
-   
-    ui.GoSpacer(layoutLblSizing, 10)
+            chkBox0 := ui.GoCheckBox(layoutLblSizing, "Fixed")
+            chkBox0.SetSizePolicy(ui.FixedWidth, ui.FixedHeight)
+            chkBox0.SetBorder(ui.BorderSingleLine, 2, 6, ui.Color_LightBlue)
+            chkBox0.SetWidth(200)
+            chkBox0.SetHeight(50)
+           
+            ui.GoSpacer(layoutLblSizing, 10)
 
-    chkBox1 := ui.GoCheckBox(layoutLblSizing, "Preferred")
-    chkBox1.SetSizePolicy(ui.PreferredWidth, ui.PreferredHeight)
-    chkBox1.SetBorder(ui.BorderSingleLine, 2, 6, ui.Color_LightBlue)
- 
-    ui.GoSpacer(layoutLblSizing, 10)
+            chkBox1 := ui.GoCheckBox(layoutLblSizing, "Preferred")
+            chkBox1.SetSizePolicy(ui.PreferredWidth, ui.PreferredHeight)
+            chkBox1.SetBorder(ui.BorderSingleLine, 2, 6, ui.Color_LightBlue)
+         
+            ui.GoSpacer(layoutLblSizing, 10)
 
-    chkBox2 := ui.GoCheckBox(layoutLblSizing, "Expanding")
-    chkBox2.SetSizePolicy(ui.ExpandingWidth, ui.ExpandingHeight)
-    chkBox2.SetBorder(ui.BorderSingleLine, 2, 6, ui.Color_LightBlue)
+            chkBox2 := ui.GoCheckBox(layoutLblSizing, "Expanding")
+            chkBox2.SetSizePolicy(ui.ExpandingWidth, ui.ExpandingHeight)
+            chkBox2.SetBorder(ui.BorderSingleLine, 2, 6, ui.Color_LightBlue)
+
+    ui.GoSpacer(mainwin.Layout(), 10)
 
     // Action Bar to contain button controls
     layoutBottom := ui.GoHFlexBoxLayout(mainwin.Layout())
     layoutBottom.SetSizePolicy(ui.ExpandingWidth, ui.PreferredHeight)   // Note: ui.FixedHeight
-    layoutBottom.SetMargin(0,10,0,0)
-    layoutBottom.SetPadding(0,0,0,0)
     layoutBottom.SetBorder(ui.BorderSingleLine, 2, 10, ui.Color_Blue)
+    
+        leftpadding := ui.GoSpacer(layoutBottom, 0)
+        leftpadding.SetSizePolicy(ui.ExpandingWidth, ui.FixedHeight)
 
-    leftpadding := ui.GoSpacer(layoutBottom, 0)
-    leftpadding.SetSizePolicy(ui.ExpandingWidth, ui.FixedHeight)
+        btnMove := ui.GoButton(layoutBottom, "Move")
+        btnMove.SetMargin(4,4,4,4)
+        btnMove.SetPadding(4,4,4,4)
+        btnMove.SetOnClick(ActionMove_Clicked)
 
-    btnMove := ui.GoButton(layoutBottom, "Move")
-    btnMove.SetMargin(4,4,4,4)
-    btnMove.SetPadding(4,4,4,4)
-    btnMove.SetOnClick(ActionMove_Clicked)
+        btnSize := ui.GoButton(layoutBottom, "Size")
+        btnSize.SetMargin(4,4,4,4)
+        btnSize.SetPadding(4,4,4,4)
+        btnSize.SetOnClick(ActionSize_Clicked)
 
-    btnSize := ui.GoButton(layoutBottom, "Size")
-    btnSize.SetMargin(4,4,4,4)
-    btnSize.SetPadding(4,4,4,4)
-    btnSize.SetOnClick(ActionSize_Clicked)
+        padding := ui.GoSpacer(layoutBottom, 0)
+        padding.SetSizePolicy(ui.ExpandingWidth, ui.FixedHeight)
 
-    padding := ui.GoSpacer(layoutBottom, 0)
-    padding.SetSizePolicy(ui.ExpandingWidth, ui.FixedHeight)
-
-    btnClose := ui.GoButton(layoutBottom, "Close")
-    btnClose.SetWidth(260)
-    btnClose.SetHeight(160)
-    btnClose.SetMargin(4,4,4,4)
-    btnClose.SetPadding(4,4,4,4)
-    btnClose.SetOnClick(ActionExit_Clicked)
+        btnClose := ui.GoButton(layoutBottom, "Close")
+        btnClose.SetWidth(260)
+        btnClose.SetHeight(160)
+        btnClose.SetMargin(4,4,4,4)
+        btnClose.SetPadding(4,4,4,4)
+        btnClose.SetOnClick(ActionExit_Clicked)
     
     lblWindowProperties.SetText("Click the Refresh Button........\n\n   to see the window properties.")
     // show the application window
@@ -116,7 +116,7 @@ func ActionMove_Clicked() {
 }
 
 func ActionSize_Clicked() {
-    width, height := mainwin.ClientSize()
+    width, height := mainwin.Size()
     mainwin.SetSize(width + 10, height + 10)
 }
 
@@ -137,14 +137,21 @@ func GetWindowProperties() (text string) {
     text += "    ClientWidth:        " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, desktop.ClientWidth())) + " px\n"  // * ui.GoDpr)) + "\n"
     text += "    ClientHeight:         " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, desktop.ClientHeight())) + " px\n\n"    // * ui.GoDpr)) + "\n"
     
-    X, Y := mainwin.Pos()
-    Width, Height := mainwin.ClientSize()
+    wX, wY := mainwin.Pos()
+    wWidth, wHeight := mainwin.ClientSize()
     text += "Window Geometry :" + "\n"
-    text += "    WindowPos:     " + " (" + strconv.Itoa(X) + ", " + strconv.Itoa(Y) + ")" + " px\n"
-    text += "    WindowSize:    " + " (" + strconv.Itoa(Width) + ", " + strconv.Itoa(Height) + ")" + " px\n\n"
+    text += "    WindowPos:     " + " (" + strconv.Itoa(wX) + ", " + strconv.Itoa(wY) + ")" + " px\n"
+    text += "    WindowSize:    " + " (" + strconv.Itoa(wWidth) + ", " + strconv.Itoa(wHeight) + ")" + " px\n\n"
 
+    cX, cY := mainwin.ClientPos()
+    cWidth, cHeight := mainwin.ClientSize()
     text += "Window Client Geometry :" + "\n"
-    text += "    ClientSize: " + " (" + strconv.Itoa(metrics.DpToPx(ui.GoDpr, desktop.HorizontalSize())) + ", " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, desktop.VerticalSize())) + ")" + "\n"
+    text += "    ClientPos:     " + " (" + strconv.Itoa(cX) + ", " + strconv.Itoa(cY) + ")" + " dp\n"
+    text += "    ClientSize:    " + " (" + strconv.Itoa(cWidth) + ", " + strconv.Itoa(cHeight) + ")" + " dp\n\n"
+
+    text += "Window Geometry Screen Pixels:" + "\n"
+    text += "    WindowPos:     " + " (" + strconv.Itoa(metrics.DpToPx(ui.GoDpr, wX)) + ", " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, wY)) + ")" + " px\n"
+    text += "    WindowSize:    " + " (" + strconv.Itoa(metrics.DpToPx(ui.GoDpr, wWidth)) + ", " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, wHeight)) + ")" + " px\n\n"
 
     return text
 }

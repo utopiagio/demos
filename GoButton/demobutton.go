@@ -118,7 +118,7 @@ func ActionMove_Clicked() {
 }
 
 func ActionSize_Clicked() {
-    width, height := mainwin.ClientSize()
+    width, height := mainwin.Size()
     mainwin.SetSize(width + 10, height + 10)
 }
 
@@ -139,14 +139,21 @@ func GetWindowProperties() (text string) {
     text += "    ClientWidth:        " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, desktop.ClientWidth())) + " px\n"  // * ui.GoDpr)) + "\n"
     text += "    ClientHeight:         " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, desktop.ClientHeight())) + " px\n\n"    // * ui.GoDpr)) + "\n"
     
-    X, Y := mainwin.Pos()
-    Width, Height := mainwin.ClientSize()
+    wX, wY := mainwin.Pos()
+    wWidth, wHeight := mainwin.ClientSize()
     text += "Window Geometry :" + "\n"
-    text += "    WindowPos:     " + " (" + strconv.Itoa(X) + ", " + strconv.Itoa(Y) + ")" + " px\n"
-    text += "    WindowSize:    " + " (" + strconv.Itoa(Width) + ", " + strconv.Itoa(Height) + ")" + " px\n\n"
-
+    text += "    WindowPos:     " + " (" + strconv.Itoa(wX) + ", " + strconv.Itoa(wY) + ")" + " px\n"
+    text += "    WindowSize:    " + " (" + strconv.Itoa(wWidth) + ", " + strconv.Itoa(wHeight) + ")" + " px\n\n"
+    
+    cX, cY := mainwin.ClientPos()
+    cWidth, cHeight := mainwin.ClientSize()
     text += "Window Client Geometry :" + "\n"
-    text += "    ClientSize: " + " (" + strconv.Itoa(metrics.DpToPx(ui.GoDpr, desktop.HorizontalSize())) + ", " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, desktop.VerticalSize())) + ")" + "\n"
+    text += "    ClientPos:     " + " (" + strconv.Itoa(cX) + ", " + strconv.Itoa(cY) + ")" + " dp\n"
+    text += "    ClientSize:    " + " (" + strconv.Itoa(cWidth) + ", " + strconv.Itoa(cHeight) + ")" + " dp\n\n"
+
+    text += "Window Geometry Screen Pixels:" + "\n"
+    text += "    WindowPos:     " + " (" + strconv.Itoa(metrics.DpToPx(ui.GoDpr, wX)) + ", " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, wY)) + ")" + " px\n"
+    text += "    WindowSize:    " + " (" + strconv.Itoa(metrics.DpToPx(ui.GoDpr, wWidth)) + ", " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, wHeight)) + ")" + " px\n\n"
 
     return text
 }
