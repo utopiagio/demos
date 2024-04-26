@@ -12,6 +12,7 @@ import (
 	ui "github.com/utopiagio/utopia"
 	"github.com/utopiagio/utopia/desktop"
     "github.com/utopiagio/utopia/metrics"
+    pointer_gio "github.com/utopiagio/gio/io/pointer"
 )
 
 var mainwin *ui.GoWindowObj
@@ -27,9 +28,13 @@ func main() {
 	mainwin.SetPadding(10,10,10,10)
 	mainwin.SetPos(0,0)
 	mainwin.SetSize(800, 600)
-	
+
+	mainwin.SetOnPointerPress(UpdatePointerPress)
+	mainwin.SetOnPointerRelease(UpdatePointerRelease)
+	mainwin.SetOnPointerMove(UpdatePointerPosition)
+
 	menuBar := mainwin.MenuBar()
-	menuBar.Show()
+	//menuBar.Show()
 
 	mnuFile := menuBar.AddMenu("File")
 	mnuEdit := menuBar.AddMenu("Edit")
@@ -62,20 +67,8 @@ func main() {
 	lblWindowProperties.SetMaxLines(100)
 	lblWindowProperties.SetPadding(8,8,8,8)
 
-	layoutBottom := ui.GoHFlexBoxLayout(mainwin.Layout())
-	layoutBottom.SetSizePolicy(ui.ExpandingWidth, ui.PreferredHeight)
-	layoutBottom.SetMargin(0,10,0,0)
-	layoutBottom.SetPadding(0,0,0,0)
-	layoutBottom.SetBorder(ui.BorderSingleLine, 2, 10, ui.Color_Blue)
-
-	btnClose := ui.GoButton(layoutBottom, "Close")
-	btnClose.SetWidth(260)
-	btnClose.SetHeight(160)
-	btnClose.SetMargin(4,4,4,4)
-	//btnClose.SetBorder(ui.BorderSingleLine, 1, 2, ui.Color_Red)
-	btnClose.SetPadding(4,4,4,4)
-	btnClose.SetOnClick(ActionExit_Clicked)
-	//btnClose.SetSizePolicy(ui.FixedWidth, ui.FixedHeight)
+	/*statusBar :=*/ mainwin.StatusBar()
+	//statusbar.Show()
 
 	// show the application window
 	mainwin.SetOnConfig(UpdateWindowProperties)
@@ -152,4 +145,46 @@ func GetWindowProperties() (text string) {
 
 func UpdateWindowProperties() {
     lblWindowProperties.SetText(GetWindowProperties())
+}
+
+func UpdatePointerPosition(e pointer_gio.Event) {
+    log.Println("PointerPos")
+    /*log.Println("GoCanvasObj::PointerPressed")
+	log.Println("Type:", e.Type)
+	log.Println("Source:", e.Source)
+	log.Println("PointerID:", e.PointerID)
+	log.Println("Priority:", e.Priority)
+	log.Println("Time:", e.Time)
+	log.Println("Buttons:", e.Buttons)
+	log.Println("Position:", e.Position)
+	log.Println("Scroll:", e.Scroll)
+	log.Println("Modifiers:", e.Modifiers)*/
+}
+
+func UpdatePointerPress(e pointer_gio.Event) {
+    log.Println("PointerPress")
+    /*log.Println("GoCanvasObj::PointerPressed")
+	log.Println("Type:", e.Type)
+	log.Println("Source:", e.Source)
+	log.Println("PointerID:", e.PointerID)
+	log.Println("Priority:", e.Priority)
+	log.Println("Time:", e.Time)
+	log.Println("Buttons:", e.Buttons)
+	log.Println("Position:", e.Position)
+	log.Println("Scroll:", e.Scroll)
+	log.Println("Modifiers:", e.Modifiers)*/
+}
+
+func UpdatePointerRelease(e pointer_gio.Event) {
+    log.Println("PointerRelease")
+    /*log.Println("GoCanvasObj::PointerPressed")
+	log.Println("Type:", e.Type)
+	log.Println("Source:", e.Source)
+	log.Println("PointerID:", e.PointerID)
+	log.Println("Priority:", e.Priority)
+	log.Println("Time:", e.Time)
+	log.Println("Buttons:", e.Buttons)
+	log.Println("Position:", e.Position)
+	log.Println("Scroll:", e.Scroll)
+	log.Println("Modifiers:", e.Modifiers)*/
 }

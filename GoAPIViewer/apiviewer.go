@@ -139,17 +139,17 @@ func ActionBackHistory() {
     link := docHistory.Back()
     doc, anchor, found := strings.Cut(link, "#")
     if found {
-        log.Println("ActionBackHistory doc=", doc, "anchor=", anchor)
+        //log.Println("ActionBackHistory doc=", doc, "anchor=", anchor)
         // load document into viewer
         if doc != "" && doc != currentDoc.Name() {
-            log.Println("Load doc......................")
+            //log.Println("Load doc......................")
             Load(doc)
         }
         if anchor == "" {
             mainview.ScrollToOffset(0) 
         } else {
             offset := currentDoc.AnchorTable(anchor)
-            log.Println("mainview.ScrollToOffset......................", offset)
+            //log.Println("mainview.ScrollToOffset......................", offset)
             mainview.ScrollToOffset(offset)
         }
         switchNavigatorFocus(doc)
@@ -160,17 +160,17 @@ func ActionForwardHistory() {
    link := docHistory.Forward()
     doc, anchor, found := strings.Cut(link, "#")
     if found {
-        log.Println("ActionForwardHistory doc=", doc, "anchor=", anchor)
+        //log.Println("ActionForwardHistory doc=", doc, "anchor=", anchor)
         // load document into viewer
         if doc != "" && doc != currentDoc.Name() {
-            log.Println("Load doc......................")
+            //log.Println("Load doc......................")
             Load(doc)
         }
         if anchor == "" {
             mainview.ScrollToOffset(0) 
         } else {
             offset := currentDoc.AnchorTable(anchor)
-            log.Println("mainview.ScrollToOffset......................", offset)
+            //log.Println("mainview.ScrollToOffset......................", offset)
             mainview.ScrollToOffset(offset)
         }
         switchNavigatorFocus(doc)
@@ -203,24 +203,24 @@ func Link_Clicked(link string) {
                 doc = currentDoc.Name()
                 link = doc + anchor
             }
-            log.Println("Link_Clicked:", link)
-            log.Println("Link doc =", doc, "anchor =", anchor)
-            log.Println("CurrentPath:",docHistory.CurrentPath())
-            log.Println("CurrentDoc:",currentDoc.Name())
+            //log.Println("Link_Clicked:", link)
+            //log.Println("Link doc =", doc, "anchor =", anchor)
+            //log.Println("CurrentPath:",docHistory.CurrentPath())
+            //log.Println("CurrentDoc:",currentDoc.Name())
             if link == docHistory.CurrentPath() {
                 return
             }
             // load document into viewer
             if doc != currentDoc.Name() {
-                log.Println("Load doc......................")
+                //log.Println("Load doc......................")
                 Load(doc)
             }
             if anchor != "" {
                 offset := currentDoc.AnchorTable(anchor)
-                log.Println("mainview.ScrollToOffset......................", offset)
+                //log.Println("mainview.ScrollToOffset......................", offset)
                 mainview.ScrollToOffset(offset)
             }
-            log.Println("Add docHistory: (", link, " )")
+            //log.Println("Add docHistory: (", link, " )")
             docHistory.Add(link)
         }
     }
@@ -268,7 +268,7 @@ func Load(doc string) {
         currentDoc.SetOnLinkClick(Link_Clicked)
     }
     mainview.ScrollToOffset(0)
-    log.Println("Load doc.................EXIT.....")
+    //log.Println("Load doc.................EXIT.....")
 }
 
 /*func getDoc(doc string) (packg string, name string, content []string) {
@@ -289,8 +289,8 @@ func NavLink_Clicked(nodeId []int) {
             link = "api.Index#"
         default: 
             if listItem.ParentControl().ObjectType() == "GoListViewItemObj" {
-                log.Println("listItem has ParentControl")
-                log.Println("listItem.Parent.Text =", listItem.ParentControl().(*ui.GoListViewItemObj).Text())
+                //log.Println("listItem has ParentControl")
+                //log.Println("listItem.Parent.Text =", listItem.ParentControl().(*ui.GoListViewItemObj).Text())
                 switch listItem.ParentControl().(*ui.GoListViewItemObj).Text() {
                     case "Overview":
                         link = "ove." + doc + "#"
@@ -303,7 +303,7 @@ func NavLink_Clicked(nodeId []int) {
                 }
             }
     }
-    log.Println("Link_Clicked(", link, ")")
+    //log.Println("Link_Clicked(", link, ")")
     Link_Clicked(link)
 }
 
@@ -355,7 +355,7 @@ func setupMenuBar() {
 func setupNavigator() {
     /*overview := */navigator.AddListItem(nil, "Overview")
     api_reference := navigator.AddListItem(nil, "API Reference")
-    api_reference.AddListItem(nil, "GoWindow")
+    api_reference.AddListItem(nil, "GoApplication")
     api_reference.AddListItem(nil, "GoButton")
     api_reference.AddListItem(nil, "GoButtonGroup")
     api_reference.AddListItem(nil, "GoCanvas")
@@ -364,6 +364,8 @@ func setupNavigator() {
     api_reference.AddListItem(nil, "GoLabel")
     api_reference.AddListItem(nil, "GoLayout")
     api_reference.AddListItem(nil, "GoList")
+    api_reference.AddListItem(nil, "GoListView")
+    api_reference.AddListItem(nil, "GoListViewItem")
     api_reference.AddListItem(nil, "GoMenu")
     api_reference.AddListItem(nil, "GoMenuBar")
     api_reference.AddListItem(nil, "GoMenuItem")
@@ -371,6 +373,7 @@ func setupNavigator() {
     api_reference.AddListItem(nil, "GoRichText")
     api_reference.AddListItem(nil, "GoSlider")
     api_reference.AddListItem(nil, "GoSpacer")
+    api_reference.AddListItem(nil, "GoWindow")
     api_reference.AddListItem(nil, "GioObject")
     api_reference.AddListItem(nil, "GioWidget")
     /*reference := */navigator.AddListItem(nil, "Reference")

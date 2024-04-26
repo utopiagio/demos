@@ -22,7 +22,7 @@ func main() {
     // create application instance before any other objects
     app := ui.GoApplication("GoListBoxDemo")
     // create application window
-    mainwin = ui.GoMainWindow("GoKistBox Demo - UtopiaGio Package")
+    mainwin = ui.GoMainWindow("GoListBox Demo - UtopiaGio Package")
     // set the window layout style to stack widgets vertically
     mainwin.SetLayoutStyle(ui.VFlexBoxLayout)
     mainwin.SetMargin(10,10,10,10)
@@ -59,8 +59,8 @@ func main() {
     lstBox1 := ui.GoListBox(layoutBtnSizing)
     lstBox1.SetSizePolicy(ui.PreferredWidth, ui.PreferredHeight)
     lstBox1.SetBorder(ui.BorderSingleLine, 2, 6, ui.Color_LightBlue)
-    lstBox1.SetWidth(300)
-    lstBox1.SetHeight(100)
+    lstBox1.SetMinWidth(300)
+    lstBox1.SetMinHeight(100)
 
     ui.GoSpacer(layoutBtnSizing, 10)
  
@@ -141,11 +141,11 @@ func GetWindowProperties() (text string) {
     text += "    ClientWidth:        " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, desktop.ClientWidth())) + " px\n"  // * ui.GoDpr)) + "\n"
     text += "    ClientHeight:         " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, desktop.ClientHeight())) + " px\n\n"    // * ui.GoDpr)) + "\n"
     
-    X, Y := mainwin.Pos()
-    Width, Height := mainwin.ClientSize()
+    wX, wY := mainwin.Pos()
+    wWidth, wHeight := mainwin.ClientSize()
     text += "Window Geometry :" + "\n"
-    text += "    WindowPos:     " + " (" + strconv.Itoa(X) + ", " + strconv.Itoa(Y) + ")" + " px\n"
-    text += "    WindowSize:    " + " (" + strconv.Itoa(Width) + ", " + strconv.Itoa(Height) + ")" + " px\n\n"
+    text += "    WindowPos:     " + " (" + strconv.Itoa(wX) + ", " + strconv.Itoa(wY) + ")" + " px\n"
+    text += "    WindowSize:    " + " (" + strconv.Itoa(wWidth) + ", " + strconv.Itoa(wHeight) + ")" + " px\n\n"
 
    cX, cY := mainwin.ClientPos()
     cWidth, cHeight := mainwin.ClientSize()

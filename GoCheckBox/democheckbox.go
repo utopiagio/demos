@@ -22,7 +22,7 @@ func main() {
     // create application instance before any other objects
     app := ui.GoApplication("GoCheckBoxDemo")
     // create application window
-    mainwin = ui.GoMainWindow("GoCheckBox Demo - UtopiaGio Package")
+    mainwin = ui.GoWindow("GoCheckBox Demo - UtopiaGio Package")
     // set the window layout style to stack widgets vertically
     mainwin.SetLayoutStyle(ui.VFlexBoxLayout)
     mainwin.SetMargin(10,10,10,10)
@@ -52,16 +52,16 @@ func main() {
             chkBox0.SetSizePolicy(ui.FixedWidth, ui.FixedHeight)
             chkBox0.SetBorder(ui.BorderSingleLine, 2, 6, ui.Color_LightBlue)
             chkBox0.SetWidth(200)
-            chkBox0.SetHeight(50)
+            chkBox0.SetMaxHeight(28)
            
             ui.GoSpacer(layoutLblSizing, 10)
-
+            
             chkBox1 := ui.GoCheckBox(layoutLblSizing, "Preferred")
             chkBox1.SetSizePolicy(ui.PreferredWidth, ui.PreferredHeight)
             chkBox1.SetBorder(ui.BorderSingleLine, 2, 6, ui.Color_LightBlue)
          
             ui.GoSpacer(layoutLblSizing, 10)
-
+            
             chkBox2 := ui.GoCheckBox(layoutLblSizing, "Expanding")
             chkBox2.SetSizePolicy(ui.ExpandingWidth, ui.ExpandingHeight)
             chkBox2.SetBorder(ui.BorderSingleLine, 2, 6, ui.Color_LightBlue)

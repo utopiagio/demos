@@ -65,7 +65,7 @@ func main() {
     lstView0.AddListItem(icons.FileFolder, "Item2")
     lstView0.AddListItem(icons.FileFolder, "Item3")
 
-    ui.GoSpacer(layoutLstSizing, 10)
+    //ui.GoSpacer(layoutLstSizing, 10)
 
     lstViewLayout1 := ui.GoHFlexBoxLayout(layoutLstSizing)
 
@@ -80,7 +80,7 @@ func main() {
     lstView1.AddListItem(icons.FileFolder, "Item2")
     lstView1.AddListItem(icons.FileFolder, "Item3")
 
-    ui.GoSpacer(layoutLstSizing, 10)
+    //ui.GoSpacer(layoutLstSizing, 10)
  
     lstViewLayout2 := ui.GoHFlexBoxLayout(layoutLstSizing)
 

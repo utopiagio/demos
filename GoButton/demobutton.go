@@ -5,7 +5,6 @@
 package main
 
 import (
-    "log"
     "os"
     "strconv"
     
@@ -27,26 +26,28 @@ func main() {
     mainwin.SetLayoutStyle(ui.VFlexBoxLayout)
     mainwin.SetMargin(10,10,10,10)
     mainwin.SetPadding(0,0,0,0)
-    //mainwin.SetMinSize(320, 480)
-    mainwin.SetSize(640, 480)
-    mainwin.SetPos(100,100)
+    //mainwin.SetSize(800, 600)
+    mainwin.SetSize(900, 600)
+    //mainwin.SetSize(1920, 1009)
+    mainwin.SetPos(50,50)
+    //mainwin.Maximize()
+    // add the Content layout to align the content horizontally
+    layoutContent := ui.GoHFlexBoxLayout(mainwin.Layout())
+    layoutContent.SetMargin(0,0,0,0)
+    layoutContent.SetPadding(0,0,0,0)
 
-    layoutWinProperties := ui.GoHFlexBoxLayout(mainwin.Layout())
-    layoutWinProperties.SetMargin(0,0,0,0)
-    layoutWinProperties.SetPadding(10,10,10,10)
-    layoutWinProperties.SetBorder(ui.BorderSingleLine, 2, 10, ui.Color_Blue)
+    layoutWindowProperties := ui.GoVBoxLayout(layoutContent)
+    layoutWindowProperties.SetSizePolicy(ui.FixedWidth, ui.ExpandingHeight)
+    layoutWindowProperties.SetWidth(270)
+    layoutWindowProperties.SetBorder(ui.BorderSingleLine, 2, 6, ui.Color_LightGray)
 
-    lblWindowProperties = ui.GoLabel(layoutWinProperties, "")
+    lblWindowProperties = ui.GoLabel(layoutWindowProperties, "")
     lblWindowProperties.SetWrap(false)
-    lblWindowProperties.SetSizePolicy(ui.PreferredWidth, ui.ExpandingHeight)
-    lblWindowProperties.SetMinWidth(260)
-    lblWindowProperties.SetBorder(ui.BorderSingleLine, 2, 6, ui.Color_LightGray)
-    lblWindowProperties.SetMaxLines(19)
     lblWindowProperties.SetPadding(8,8,8,8)
 
-    ui.GoSpacer(layoutWinProperties, 10)
+    ui.GoSpacer(layoutContent, 10)
 
-    layoutBtnSizing := ui.GoVFlexBoxLayout(layoutWinProperties)
+    layoutBtnSizing := ui.GoVFlexBoxLayout(layoutContent)
 
     btn0 := ui.GoButton(layoutBtnSizing, "Fixed")
     btn0.SetSizePolicy(ui.FixedWidth, ui.FixedHeight)
@@ -65,6 +66,7 @@ func main() {
     btn2 := ui.GoButton(layoutBtnSizing, "Expanding")
     btn2.SetSizePolicy(ui.ExpandingWidth, ui.ExpandingHeight)
     btn2.SetBorder(ui.BorderSingleLine, 2, 6, ui.Color_LightBlue)
+    btn2.SetOnClick(Action_MaximizeWindow)
     
     
     // Action Bar to contain button controls
@@ -101,15 +103,17 @@ func main() {
     // show the application window
     mainwin.SetOnConfig(UpdateWindowProperties)
     mainwin.Show()
-
-    
     // run the application
     app.Run()
 }
 
 func ActionExit_Clicked() {
-    log.Println("ActionExit_Clicked().......")
+    //log.Println("ActionExit_Clicked().......")
     os.Exit(0)
+}
+
+func Action_MaximizeWindow() {
+     mainwin.Maximize()
 }
 
 func ActionMove_Clicked() {
@@ -125,8 +129,8 @@ func ActionSize_Clicked() {
 func GetWindowProperties() (text string) {
     text = "WINDOW PROPERTIES>\n\n"
     text += "Screen Geometry :" + "\n"
-    text += "    ScreenWidth:       " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, desktop.Width())) + " px\n"    // * ui.GoDpr)) + "\n"
-    text += "    ScreenHeight:      " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, desktop.Height())) + " px\n"    // * ui.GoDpr)) + "\n\n"
+    text += "    ScreenWidth:       " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, desktop.Width())) + " px, " + strconv.Itoa(desktop.Width()) + " dp\n"    // * ui.GoDpr)) + "\n"
+    text += "    ScreenHeight:      " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, desktop.Height())) + " px, " + strconv.Itoa(desktop.Height()) + " dp\n"    // * ui.GoDpr)) + "\n\n"
     text += "    HorizontalRes:       " + strconv.Itoa(desktop.HorizontalRes()) + " dpi\n"
     text += "    VerticalRes:           " + strconv.Itoa(desktop.VerticalRes()) + " dpi\n\n"
 
@@ -136,14 +140,14 @@ func GetWindowProperties() (text string) {
     text += ",    XY: " + strconv.Itoa(desktop.AspectXY()) + "\n\n"*/
 
     text += "Screen Available :" + "\n"
-    text += "    ClientWidth:        " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, desktop.ClientWidth())) + " px\n"  // * ui.GoDpr)) + "\n"
-    text += "    ClientHeight:         " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, desktop.ClientHeight())) + " px\n\n"    // * ui.GoDpr)) + "\n"
+    text += "    ClientWidth:        " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, desktop.ClientWidth())) + " px, " + strconv.Itoa(desktop.ClientWidth()) + " dp\n"  // * ui.GoDpr)) + "\n"
+    text += "    ClientHeight:         " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, desktop.ClientHeight())) + " px, "  + strconv.Itoa(desktop.ClientHeight()) + " dp\n\n"    // * ui.GoDpr)) + "\n"
     
     wX, wY := mainwin.Pos()
-    wWidth, wHeight := mainwin.ClientSize()
+    wWidth, wHeight := mainwin.Size()
     text += "Window Geometry :" + "\n"
-    text += "    WindowPos:     " + " (" + strconv.Itoa(wX) + ", " + strconv.Itoa(wY) + ")" + " px\n"
-    text += "    WindowSize:    " + " (" + strconv.Itoa(wWidth) + ", " + strconv.Itoa(wHeight) + ")" + " px\n\n"
+    text += "    WindowPos:     " + " (" + strconv.Itoa(wX) + ", " + strconv.Itoa(wY) + ")" + " dp\n"
+    text += "    WindowSize:    " + " (" + strconv.Itoa(wWidth) + ", " + strconv.Itoa(wHeight) + ")" + " dp\n\n"
     
     cX, cY := mainwin.ClientPos()
     cWidth, cHeight := mainwin.ClientSize()
@@ -153,7 +157,7 @@ func GetWindowProperties() (text string) {
 
     text += "Window Geometry Screen Pixels:" + "\n"
     text += "    WindowPos:     " + " (" + strconv.Itoa(metrics.DpToPx(ui.GoDpr, wX)) + ", " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, wY)) + ")" + " px\n"
-    text += "    WindowSize:    " + " (" + strconv.Itoa(metrics.DpToPx(ui.GoDpr, wWidth)) + ", " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, wHeight)) + ")" + " px\n\n"
+    text += "    WindowSize:    " + " (" + strconv.Itoa(metrics.DpToPx(ui.GoDpr, wWidth)) + ", " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, wHeight)) + ")" + " px\n"
 
     return text
 }

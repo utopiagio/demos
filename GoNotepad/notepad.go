@@ -25,7 +25,7 @@ func main() {
 	// create application instance before any other objects
 	app = ui.GoApplication("GoNotepad")
 	// create application window
-	win = ui.GoWindow("GoNotepad - UtopiaGio Package")
+	win = ui.GoMainWindow("GoNotepad - UtopiaGio Package")
 	// set the window layout style to stack widgets vertically
 	win.SetLayoutStyle(ui.VFlexBoxLayout)
 	win.SetMargin(10,10,10,10)
@@ -182,20 +182,20 @@ func main() {
 }
 
 func ActionEditCopy_Clicked() {
-	log.Println("ActionEditCopy_Clicked().......")
+	//log.Println("ActionEditCopy_Clicked().......")
 	text := txtPad.SelectedText()
 	app.ClipBoard().WriteText(text)
 }
 
 func ActionEditCut_Clicked() {
-	log.Println("ActionEditCut_Clicked().......")
+	//log.Println("ActionEditCut_Clicked().......")
 	text := txtPad.SelectedText()
 	app.ClipBoard().WriteText(text)
 	txtPad.Insert("")
 }
 
 func ActionEditPaste_Clicked() {
-	log.Println("ActionEditPaste_Clicked().......")
+	//log.Println("ActionEditPaste_Clicked().......")
 	text := app.ClipBoard().ReadText()
 	if text != "" {
 		txtPad.Insert(text)
@@ -203,31 +203,31 @@ func ActionEditPaste_Clicked() {
 }
 
 func ActionEditUndo_Clicked() {
-	log.Println("ActionEditUndo_Clicked().......")
+	//log.Println("ActionEditUndo_Clicked().......")
 }
 
 func ActionEditRedo_Clicked() {
-	log.Println("ActionEditRedo_Clicked().......")
+	//log.Println("ActionEditRedo_Clicked().......")
 }
 
 func ActionExit_Clicked() {
-	log.Println("ActionExit_Clicked().......")
+	//log.Println("ActionExit_Clicked().......")
 	//win.Close()
 	os.Exit(0)
 }
 
 func ActionFileNew_Clicked() {
-	log.Println("ActionFileNew_Clicked().......")
+	//log.Println("ActionFileNew_Clicked().......")
 
 	filePath = ""
 	fileSaved = false
 }
 
 func ActionFileOpen_Clicked() {
-	log.Println("ActionFile_Clicked().......")
+	//log.Println("ActionFile_Clicked().......")
 	var resp int
 	resp, filePath = dialog.GetOpenFileName(nil, openFilePath, "OpenFileDialog")
-	log.Println("OpenFileDialog returned:", resp, filePath)
+	//log.Println("OpenFileDialog returned:", resp, filePath)
 	if filePath == "" {filePath = "/UtopiaGio Unamed"}
 	if resp > -1 {
 		if _, err := os.Stat(filePath); err == nil {
@@ -251,7 +251,7 @@ func ActionFileOpen_Clicked() {
 }
 
 func ActionFileSave_Clicked() {
-	log.Println("ActionFileSave_Clicked().......")
+	//log.Println("ActionFileSave_Clicked().......")
 	//err = os.WriteFile(fileName, txtPad.Text(), 0644)
 	if openFilePath == "" {openFilePath = "/UtopiaGio Unamed"}
 	// Create creates or truncates the named file. If the file already exists, it is truncated.
@@ -273,7 +273,7 @@ func ActionFileSave_Clicked() {
 }
 
 func ActionFileSaveAs_Clicked() {
-	log.Println("ActionFileSaveAs_Clicked().......")
+	//log.Println("ActionFileSaveAs_Clicked().......")
 	// show fileSave dialog
 	var resp int
 	resp, filePath = dialog.GetSaveFileName(nil, openFilePath, "SaveFileDialog")
@@ -298,14 +298,14 @@ func ActionFileSaveAs_Clicked() {
 }
 
 func ActionFileClose_Clicked() {
-	log.Println("ActionFileClose_Clicked().......")
+	//log.Println("ActionFileClose_Clicked().......")
 	openFilePath = ""
 	txtPad.SetText("")
 	fileSaved = true
 }
 
 func ActionFontBold_Clicked() {
-	log.Println("ActionFontBold_Clicked().......")
+	//log.Println("ActionFontBold_Clicked().......")
 	if txtPad.FontBold() == true {
 		txtPad.SetFontBold(false)
 	} else {
@@ -330,17 +330,17 @@ func ActionOrangeFontColor_Clicked() {
 }
 
 func Action12ptFontSize_Clicked() {
-	log.Println("Action12ptFontSize_Clicked().......")
+	//log.Println("Action12ptFontSize_Clicked().......")
 	txtPad.SetFontSize(12)
 }
 
 func Action14ptFontSize_Clicked() {
-	log.Println("Action14ptFontSize_Clicked().......")
+	//log.Println("Action14ptFontSize_Clicked().......")
 	txtPad.SetFontSize(14)
 }
 
 func Action16ptFontSize_Clicked() {
-	log.Println("Action16ptFontSize_Clicked().......")
+	//log.Println("Action16ptFontSize_Clicked().......")
 	txtPad.SetFontSize(16)
 }
 
@@ -357,7 +357,7 @@ func Action800ViewSizeSize_Clicked() {
 }
 
 func ActionSendMail_Clicked() {
-	log.Println("ActionSendMail_Clicked().......")
+	//log.Println("ActionSendMail_Clicked().......")
 }
 
 func fileExists(filePath string) bool {

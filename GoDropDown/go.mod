@@ -1,4 +1,4 @@
-module github.com/utopiagio/demos/GoSliderBar
+module github.com/utopiagio/demos/GoDropDown
 
 go 1.21.4
 
@@ -23,10 +23,4 @@ require (
 	golang.org/x/mobile v0.0.0-20231127183840-76ac6878050a // indirect
 	golang.org/x/sys v0.18.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
-)
-
-replace (
-	github.com/utopiagio/gio => ../../gio
-	github.com/utopiagio/gio-x => ../../gio-x
-	github.com/utopiagio/utopia => ../../utopia
 )

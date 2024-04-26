@@ -41,7 +41,6 @@ func main() {
     lblWindowProperties.SetSizePolicy(ui.PreferredWidth, ui.ExpandingHeight)
     lblWindowProperties.SetMinWidth(260)
     lblWindowProperties.SetBorder(ui.BorderSingleLine, 2, 6, ui.Color_LightGray)
-    lblWindowProperties.SetMaxLines(19)
     lblWindowProperties.SetPadding(8,8,8,8)
 
     ui.GoSpacer(layoutWinProperties, 10)
@@ -128,8 +127,8 @@ func ActionSize_Clicked() {
 func GetWindowProperties() (text string) {
     text = "WINDOW PROPERTIES>\n\n"
     text += "Screen Geometry :" + "\n"
-    text += "    ScreenWidth:       " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, desktop.Width())) + " px\n"    // * ui.GoDpr)) + "\n"
-    text += "    ScreenHeight:      " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, desktop.Height())) + " px\n"    // * ui.GoDpr)) + "\n\n"
+    text += "    ScreenWidth:       " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, desktop.Width())) + " px, " + strconv.Itoa(desktop.Width()) + " dp\n"    // * ui.GoDpr)) + "\n"
+    text += "    ScreenHeight:      " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, desktop.Height())) + " px, " + strconv.Itoa(desktop.Height()) + " dp\n"    // * ui.GoDpr)) + "\n\n"
     text += "    HorizontalRes:       " + strconv.Itoa(desktop.HorizontalRes()) + " dpi\n"
     text += "    VerticalRes:           " + strconv.Itoa(desktop.VerticalRes()) + " dpi\n\n"
 
@@ -139,15 +138,15 @@ func GetWindowProperties() (text string) {
     text += ",    XY: " + strconv.Itoa(desktop.AspectXY()) + "\n\n"*/
 
     text += "Screen Available :" + "\n"
-    text += "    ClientWidth:        " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, desktop.ClientWidth())) + " px\n"  // * ui.GoDpr)) + "\n"
-    text += "    ClientHeight:         " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, desktop.ClientHeight())) + " px\n\n"    // * ui.GoDpr)) + "\n"
+    text += "    ClientWidth:        " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, desktop.ClientWidth())) + " px, " + strconv.Itoa(desktop.ClientWidth()) + " dp\n"  // * ui.GoDpr)) + "\n"
+    text += "    ClientHeight:         " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, desktop.ClientHeight())) + " px, "  + strconv.Itoa(desktop.ClientHeight()) + " dp\n\n"    // * ui.GoDpr)) + "\n"
     
-    X, Y := mainwin.Pos()
-    Width, Height := mainwin.ClientSize()
+    wX, wY := mainwin.Pos()
+    wWidth, wHeight := mainwin.Size()
     text += "Window Geometry :" + "\n"
-    text += "    WindowPos:     " + " (" + strconv.Itoa(X) + ", " + strconv.Itoa(Y) + ")" + " px\n"
-    text += "    WindowSize:    " + " (" + strconv.Itoa(Width) + ", " + strconv.Itoa(Height) + ")" + " px\n\n"
-
+    text += "    WindowPos:     " + " (" + strconv.Itoa(wX) + ", " + strconv.Itoa(wY) + ")" + " dp\n"
+    text += "    WindowSize:    " + " (" + strconv.Itoa(wWidth) + ", " + strconv.Itoa(wHeight) + ")" + " dp\n\n"
+    
     cX, cY := mainwin.ClientPos()
     cWidth, cHeight := mainwin.ClientSize()
     text += "Window Client Geometry :" + "\n"
@@ -156,7 +155,7 @@ func GetWindowProperties() (text string) {
 
     text += "Window Geometry Screen Pixels:" + "\n"
     text += "    WindowPos:     " + " (" + strconv.Itoa(metrics.DpToPx(ui.GoDpr, wX)) + ", " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, wY)) + ")" + " px\n"
-    text += "    WindowSize:    " + " (" + strconv.Itoa(metrics.DpToPx(ui.GoDpr, wWidth)) + ", " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, wHeight)) + ")" + " px\n\n"
+    text += "    WindowSize:    " + " (" + strconv.Itoa(metrics.DpToPx(ui.GoDpr, wWidth)) + ", " + strconv.Itoa(metrics.DpToPx(ui.GoDpr, wHeight)) + ")" + " px\n"
 
     return text
 }

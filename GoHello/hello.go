@@ -32,7 +32,7 @@ func main() {
     mainwin.SetMargin(10,10,10,10)
     mainwin.SetBorder(ui.BorderSingleLine, 2, 10, ui.Color_Blue)
     mainwin.SetPadding(10,10,10,10)
-    mainwin.SetSize(640, 450)
+    mainwin.SetSize(900, 640)
     mainwin.SetPos(100,100)
 
     // setup the main window MenuBar
@@ -43,7 +43,6 @@ func main() {
     //mnuCode.AddAction("API Reference", ShowAPIReference_Clicked)
     //mnuCode.AddAction("Main Code", ShowMainCode_Clicked)
     
-
     // add the header layout to align widgets horizontally
     layoutHeader := ui.GoHFlexBoxLayout(mainwin.Layout())
     layoutHeader.SetSizePolicy(ui.ExpandingWidth, ui.PreferredHeight)
@@ -82,26 +81,41 @@ func main() {
 
         // add the VFlexBox layout to contain the Label layout options
         layoutLblSizing := ui.GoVFlexBoxLayout(layoutContent)
+        layoutLblSizing.SetBorder(ui.BorderSingleLine, 2, 6, ui.Color_LightGray)
+        layoutLblSizing.SetPadding(10,10,10,10)
 
-            lblLabel0 := ui.GoLabel(layoutLblSizing, "GoLabel...GoSizePolicy{Horiz: FixedWidth, Vert: FixedHeight}")
-            lblLabel0.SetSizePolicy(ui.FixedWidth, ui.PreferredHeight)
+            ui.GoLabel(layoutLblSizing, "GoLabel...GoSizePolicy{Horiz: FixedWidth, Vert: FixedHeight}")
+            lblLabel0 := ui.GoLabel(layoutLblSizing, "Hello from UtopiaGio")
+            lblLabel0.SetSizePolicy(ui.FixedWidth, ui.FixedHeight)
             lblLabel0.SetBorder(ui.BorderSingleLine, 2, 6, ui.Color_LightBlue)
+            lblLabel0.SetHeight(50)
             lblLabel0.SetWidth(500)
             lblLabel0.SetMaxLines(1)
+            lblLabel0.SetFontSize(24)
+            lblLabel0.SetFontBold(true)
+            lblLabel0.SetTextColor(ui.Color_Blue)
            
             ui.GoSpacer(layoutLblSizing, 10)
 
-            lblLabel1 := ui.GoLabel(layoutLblSizing, "GoLabel...GoSizePolicy{Horiz: PreferredWidth, Vert: PreferredHeight}")
+            ui.GoLabel(layoutLblSizing, "GoLabel...GoSizePolicy{Horiz: PreferredWidth, Vert: PreferredHeight}")
+            lblLabel1 := ui.GoLabel(layoutLblSizing, "Hello from UtopiaGio")
             lblLabel1.SetSizePolicy(ui.PreferredWidth, ui.PreferredHeight)
             lblLabel1.SetBorder(ui.BorderSingleLine, 2, 6, ui.Color_LightBlue)
             lblLabel1.SetMaxLines(0)
+            lblLabel1.SetFontSize(36)
+            lblLabel1.SetFontBold(true)
+            lblLabel1.SetTextColor(ui.Color_Blue)
          
             ui.GoSpacer(layoutLblSizing, 10)
          
-            lblLabel2 := ui.GoLabel(layoutLblSizing, "GoLabel...GoSizePolicy{Horiz: ExpandingWidth, Vert: ExpandingHeight}")
+            ui.GoLabel(layoutLblSizing, "GoLabel...GoSizePolicy{Horiz: ExpandingWidth, Vert: ExpandingHeight}")
+            lblLabel2 := ui.GoLabel(layoutLblSizing, "Hello from UtopiaGio")
             lblLabel2.SetSizePolicy(ui.ExpandingWidth, ui.ExpandingHeight)
             lblLabel2.SetBorder(ui.BorderSingleLine, 2, 6, ui.Color_LightBlue)
             lblLabel2.SetMaxLines(0)
+            lblLabel2.SetFontSize(48)
+            lblLabel2.SetFontBold(true)
+            lblLabel2.SetTextColor(ui.Color_Blue)
     
     // add the Action Bar layout to contain button controls
     layoutBottom := ui.GoHFlexBoxLayout(mainwin.Layout())
@@ -111,10 +125,15 @@ func main() {
     layoutBottom.SetBorder(ui.BorderSingleLine, 2, 10, ui.Color_Blue)
 
         // add expanding spacer
-        leftpadding := ui.GoSpacer(layoutBottom, 0)
-        leftpadding.SetSizePolicy(ui.ExpandingWidth, ui.FixedHeight)
+        //leftpadding := ui.GoSpacer(layoutBottom, 0)
+        //leftpadding.SetSizePolicy(ui.ExpandingWidth, ui.FixedHeight)
 
-        btnMoveCode := ui.GoButton(layoutBottom, "?")
+        lblHint := ui.GoLabel(layoutBottom, "Try Resizing the Window...")
+        lblHint.SetMargin(10, 6, 0, 0)
+        lblHint.SetMaxLines(1)
+        lblHint.SetFontSize(24)
+        lblHint.SetFontBold(true)
+        /*btnMoveCode := ui.GoButton(layoutBottom, "?")
         btnMoveCode.SetMargin(0,4,0,4)
         btnMoveCode.SetPadding(4,4,2,4)
         btnMoveCode.SetFaceColor(ui.Color_LightGrey)
@@ -134,7 +153,7 @@ func main() {
         btnSizeCode.SetMargin(0,4,0,4)
         btnSizeCode.SetPadding(2,4,4,4)
         btnSizeCode.SetFaceColor(ui.Color_LightGrey)
-        btnSizeCode.SetOnClick(ShowSizeCode_Clicked)
+        btnSizeCode.SetOnClick(ShowSizeCode_Clicked)*/
 
         // add expanding spacer
         padding := ui.GoSpacer(layoutBottom, 0)
@@ -148,9 +167,10 @@ func main() {
         btnClose.SetOnClick(ActionExit_Clicked)
     
     lblWindowProperties.SetText("Click the Refresh Button........\n\n   to see the window properties.")
-    // show the application window
     mainwin.SetOnConfig(UpdateWindowProperties)
+    // show the application window
     mainwin.Show()
+
     
     // run the application
     app.Run()
@@ -160,7 +180,7 @@ func ActionExit_Clicked() {
     mainwin.Close()
 }
 
-func ActionMove_Clicked() {
+/*func ActionMove_Clicked() {
     x, y := mainwin.Pos()
     mainwin.SetPos(x + 10, y + 10)
 }
@@ -168,7 +188,7 @@ func ActionMove_Clicked() {
 func ActionSize_Clicked() {
     width, height := mainwin.Size()
     mainwin.SetSize(width + 10, height + 10)
-}
+}*/
 
 func GetWindowProperties() (text string) {
     text = "WINDOW PROPERTIES>\n\n"
@@ -217,7 +237,7 @@ func LoadOverview() {
     LaunchViewer("GoWindowObj", "")
 }
 
-func ShowMoveCode_Clicked() {
+/*func ShowMoveCode_Clicked() {
     popup = mainwin.PopupWindow()
     popup.Layout().SetSizePolicy(ui.PreferredWidth, ui.PreferredHeight)
     popup.Layout().SetPadding(4,4,4,4)
@@ -237,7 +257,7 @@ func ShowSizeCode_Clicked() {
     popup.Layout().Clear()
     ui.GoLabel(popup.Layout(), codeActionSize_Clicked)
     popup.Show()
-}
+}*/
 
 func UpdateWindowProperties() {
     lblWindowProperties.SetText(GetWindowProperties())
